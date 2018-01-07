@@ -31,6 +31,65 @@
 //顶部效果
 {
     let flag = true;
+    $(".techer").click(function () {
+        if (flag) {
+            $(".techer").css({height: 85, background: "#ff986a"});
+            $(".top-sec-nav2").show();
+            $(".top-sec-nav2 li").each(function (index) {
+                $(this).css({
+                    opacity: 0,
+                    transform: "rotateX(90deg)",
+                    animation: "slideDown .3s ease-in " + index * 0.2 + "s forwards"
+                })
+            })
+        } else {
+            $(".top-sec-nav2 li").each(function (index) {
+                $(this).css({
+                    opacity: 1,
+                    transform: "rotate(0)",
+                    animation: "slideUp .3s ease-in " + (0.4 - index * 0.2) + "s forwards"
+                });
+                setTimeout(function () {
+                    $(".techer").css({height: 80, background: ""});
+                    $(".top-sec-nav2").hide();
+                }, 400)
+            })
+        }
+        flag = !flag;
+    })
+}
+{
+    let flag = true;
+    $(".our").click(function () {
+        if (flag) {
+            $(".our").css({height: 85, background: "#ff986a"});
+            $(".top-sec-nav3").show();
+            $(".top-sec-nav3 li").each(function (index) {
+                $(this).css({
+                    opacity: 0,
+                    transform: "rotateX(90deg)",
+                    animation: "slideDown .3s ease-in " + index * 0.2 + "s forwards"
+                })
+            })
+        } else {
+            $(".top-sec-nav3 li").each(function (index) {
+                $(this).css({
+                    opacity: 1,
+                    transform: "rotate(0)",
+                    animation: "slideUp .3s ease-in " + (0.4 - index * 0.2) + "s forwards"
+                });
+                setTimeout(function () {
+                    $(".our").css({height: 80, background: ""});
+                    $(".top-sec-nav3").hide();
+                }, 400)
+            })
+        }
+        flag = !flag;
+    })
+}
+//同上
+{
+    let flag = true;
     $(".vedio").click(function () {
         if (flag) {
             $(".vedio").css({height: 85, background: "#ff986a"});
@@ -151,7 +210,7 @@
                 })
             }
         } else {
-              flag=true;
+            flag=true;
             $(".news-list").each(function (index) {
                 $(this).css({top: 1000})
             })
@@ -160,37 +219,38 @@
 }
 //文字波动的效果
 {
-   $(".content-name p:first-child").each(function(){
-       let content=$(this).text();
-       $(this).html("").css("position","relative");
-       let obj=this;
-       let spans=[];
-       Array.from(content).forEach(function(word){
-           let newspan=$("<span>").html(word).css({
-               position:"relative",
-               left:0,
-               top:0
-           }).appendTo(obj);
-           spans.push(newspan);
-       });
-       $(this).mousemove(function(e){
-           let x=e.offsetX;
-           spans.forEach(function(ele){
-               let ox=ele.position().left;
-               ele.css({
-                   top:Math.abs(ox-x)/5-15<0?Math.abs(ox-x)/5-15:0
-               })
-           })
-       });
-       $(this).mouseleave(function(){
-           spans.forEach(function(ele){
-               ele.css("transition","all .3s");
-               ele.css("top",0);
-               ele.on("transitionend",function(){
-                   $(this).css("transition","none");
-               })
-           });
-       })
+    $(".content-name p:first-child").each(function(){
+        let content=$(this).text();
+        $(this).html("").css("position","relative");
+        let obj=this;
+        let spans=[];
+        Array.from(content).forEach(function(word){
+            let newspan=$("<span>").html(word).css({
+                position:"relative",
+                left:0,
+                top:0
+            }).appendTo(obj);
+            spans.push(newspan);
+        });
+        $(this).mousemove(function(e){
+            let x=e.offsetX;
+            spans.forEach(function(ele){
+                let ox=ele.position().left;
+                ele.css({
+                    top:Math.abs(ox-x)/5-15<0?Math.abs(ox-x)/5-15:0
+                })
+            })
+        });
+        $(this).mouseleave(function(){
+            spans.forEach(function(ele){
+                ele.css("transition","all .3s");
+                ele.css("top",0);
+                ele.on("transitionend",function(){
+                    $(this).css("transition","none");
+                })
+            });
+        })
 
-   })
+    })
 }
+createsnow();
